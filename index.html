@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-
-<html>
-  <head>
-    <title>Lore</title>
-  </head>
-  <body>
-    <h1>Lore</h1>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sentence Lookup (Protected)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Sentence Lookup</h1>
+  <div id="unlock">
+    <input type="password" id="password" placeholder="Enter password..." />
+    <button id="unlock-btn">Unlock Sentences</button>
+    <div id="unlock-msg"></div>
+  </div>
+  <div id="search-section" style="display:none;">
+    <input type="text" id="search" placeholder="Type a word..." />
+    <div id="results"></div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <script src="script.js"></script>
+</body>
 </html>
