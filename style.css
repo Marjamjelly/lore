@@ -1,0 +1,22 @@
+body {
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  margin: 2em auto;
+  padding: 1em;
+  background: #fafafa;
+  color: #222;
+}
+
+input[type="text"], input[type="password"] {
+  width: 100%;
+  padding: 0.5em;
+  font-size: 1.1em;
+  margin-bottom: 1em;
+}
+
+#results p {
+  background: #e0e0e0;
+  padding: 0.5em;
+  border-radius: 4px;
+  margin: 0.4em 0;
+}
