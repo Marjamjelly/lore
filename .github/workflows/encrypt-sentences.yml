@@ -1,0 +1,39 @@
+name: Encrypt Sentences
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'sentences.json'
+
+jobs:
+  encrypt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install CryptoJS
+        run: npm install crypto-js
+
+      - name: Encrypt sentences.json
+        env:
+          SENTENCES_PASSWORD: ${{ secrets.SENTENCES_PASSWORD }}
+        run: node encode-sentences.js
+
+      - name: Remove sentences.json
+        run: |
+          git rm --ignore-unmatch sentences.json || true
+
+      - name: Commit encrypted file
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add sentences.enc
+          git commit -m "Auto-encrypt sentences.json to sentences.enc" || echo "No changes to commit"
+          git push
