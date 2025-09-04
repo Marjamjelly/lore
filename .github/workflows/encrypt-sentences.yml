@@ -1,5 +1,8 @@
 name: Encrypt Sentences
 
+permissions:
+  contents: write
+
 on:
   push:
     branches:
@@ -37,3 +40,6 @@ jobs:
           git add sentences.enc
           git commit -m "Auto-encrypt sentences.json to sentences.enc" || echo "No changes to commit"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
