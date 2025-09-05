@@ -1,7 +1,7 @@
 let encryptedData = '';
-let sentences = [];
+let quotes = [];
 
-fetch('sentences.enc')
+fetch('quotes.enc')
   .then(res => res.json())
   .then(data => {
     encryptedData = data.data;
@@ -17,7 +17,7 @@ document.getElementById('unlock-btn').onclick = function() {
       unlockMsg.textContent = 'Incorrect password.';
       return;
     }
-    sentences = JSON.parse(decryptedText);
+    quotes = JSON.parse(decryptedText);
     document.getElementById('unlock').style.display = 'none';
     document.getElementById('search-section').style.display = '';
     unlockMsg.textContent = '';
@@ -33,13 +33,20 @@ document.getElementById('search').addEventListener('input', function() {
 
   if (query.length === 0) return;
 
-  const matched = sentences.filter(sentence =>
-    sentence.toLowerCase().includes(query)
+  const matchedQuotes = quotes.filter(q =>
+    (q.text && q.text.toLowerCase().includes(query)) ||
+    (q.author && q.author.toLowerCase().includes(query))
   );
 
-  if (matched.length === 0) {
+  if (matchedQuotes.length === 0) {
     resultsDiv.textContent = 'No matches found.';
-  } else {
-    resultsDiv.innerHTML = matched.map(s => `<p>${s}</p>`).join('');
+    return;
   }
+
+  matchedQuotes.forEach(q => {
+    const block = document.createElement('div');
+    block.className = 'quote-block';
+    block.innerHTML = `<blockquote>“${q.text}”</blockquote><div class="quote-author">— ${q.author}</div>`;
+    resultsDiv.appendChild(block);
+  });
 });

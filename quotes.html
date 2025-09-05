@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quote Lookup (Protected)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Quote Lookup</h1>
+  <div id="unlock">
+    <input type="password" id="password" placeholder="Enter password..." />
+    <button id="unlock-btn">Unlock Quotes</button>
+    <div id="unlock-msg"></div>
+  </div>
+  <div id="search-section" style="display:none;">
+    <input type="text" id="search" placeholder="Type a word, phrase, or author..." />
+    <div id="results"></div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <script src="quotes.js"></script>
+</body>
+</html>
