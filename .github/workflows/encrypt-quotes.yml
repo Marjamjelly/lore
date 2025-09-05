@@ -1,4 +1,4 @@
-name: Encrypt Quotes
+name: Encrypt Quote
 
 permissions:
   contents: write
